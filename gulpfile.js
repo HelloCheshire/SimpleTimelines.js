@@ -12,7 +12,7 @@ var rename       = require('gulp-rename');
 var source     = './';
 
 gulp.task('sass', function() {
-    gulp.src('sass/main.scss')
+    gulp.src('sass/simpletimeline.scss')
         .pipe(sass().on('error', sass.logError))
         .pipe(gulp.dest('./vendor'));
 });
@@ -22,10 +22,10 @@ gulp.task('js', function() {
     .pipe(babel({
       presets: ['es2015']
     }))
-    .pipe(concat('development.js'))
+    .pipe(concat('simpletimeline.js'))
     .pipe(gulp.dest(source + '/vendor'))
     .pipe(rename({
-      basename: 'production',
+      basename: 'simpletimeline',
       suffix: '-min',
     }))
     .pipe(uglify())

@@ -26,6 +26,7 @@ class Timeline {
         let rangeX = this.slidesWidth - this.docWidth;
 
         this.wrapper.addEventListener("mousemove", this.mouseListen.bind(this)); //hover within wrapper (horizontal scrolling)
+        window.addEventListener("resize", this.windowSizeChange.bind(this)); //hover within wrapper (horizontal scrolling)
         this.initNodeListen(); //hover individual node
       }
     }
@@ -43,63 +44,6 @@ class Timeline {
     }
   }
 
-  injectHTML() {
-    let timelineWrapper = document.createElement("section");
-    timelineWrapper.classList.add('timeline-wrapper');
-    this.wrapper.appendChild(timelineWrapper);
-
-    let timeline = document.createElement("div");
-    timeline.classList.add('timeline');
-    timelineWrapper.appendChild(timeline);
-
-    let line = document.createElement("div");
-    line.classList.add('line');
-    timeline.appendChild(line);
-
-    let nodeWrapper = document.createElement("div");
-    nodeWrapper.classList.add('node-wrapper');
-    timeline.appendChild(nodeWrapper);
-
-    for(let i = 0; i < this.data.length; i++) {
-      let tlNode = document.createElement("div");
-      tlNode.classList.add('tl-node');
-      nodeWrapper.appendChild(tlNode);
-
-      let year = document.createElement("p");
-      let yearText = document.createTextNode(this.data[i].year)
-      year.appendChild(yearText);
-      tlNode.appendChild(year);
-
-      let dot = document.createElement("div");
-      dot.classList.add('dot');
-      tlNode.appendChild(dot);
-
-      let data = document.createElement("div");
-      data.classList.add('data');
-      data.classList.add('left-triangle');
-      tlNode.appendChild(data);
-
-      let upper = document.createElement("div");
-      data.classList.add('upper');
-      data.appendChild(upper);
-
-      let dataYear = document.createElement("h5");
-      let dataYearText = document.createTextNode(this.data[i].year)
-      dataYear.appendChild(dataYearText)
-      upper.appendChild(dataYear);
-
-      let title = document.createElement("h3");
-      let titleText = document.createTextNode(this.data[i].title)
-      title.appendChild(titleText)
-      upper.appendChild(title);
-
-      let image = document.createElement("img");
-      image.src = this.data[i].image;
-      upper.appendChild(image);
-    }
-
-  }
-
   initNodeListen() {
     for(let i = 0; i < this.nodes.length; i++) {
       this.nodes[i].addEventListener("mouseenter", this.nodeListen);
@@ -107,11 +51,13 @@ class Timeline {
   }
 
   mouseListen(e) {
-    var mouseX = e.pageX,
+    if(this.checkScreenSize()) {
+      var mouseX = e.pageX,
       percentMouse = mouseX * 100 / this.docWidth,
       offset = percentMouse / 100 * this.slidesWidth - percentMouse / 200 * this.docWidth;
 
-    this.timelineInner.style.transform = 'translate3d(' + -offset + 'px,0,0)'
+      this.timelineInner.style.transform = 'translate3d(' + -offset + 'px,0,0)'
+    }
   };
 
   nodeListen() {
@@ -132,6 +78,12 @@ class Timeline {
     }
   }
 
+  windowSizeChange() {
+    if(!this.checkScreenSize()) {
+      this.timelineInner.style.transform = 'translate3d(0,0,0)';
+    }
+  }
+
   checkScreenSize() {
     if(window.innerWidth > 800) {
       return true;
@@ -140,51 +92,61 @@ class Timeline {
     }
   }
 
-}
+  injectHTML() {
+    let timelineWrapper = document.createElement("section");
+    timelineWrapper.classList.add('timeline-wrapper');
+    this.wrapper.appendChild(timelineWrapper);
 
+    let timeline = document.createElement("div");
+    timeline.classList.add('timeline');
+    timelineWrapper.appendChild(timeline);
 
+    let line = document.createElement("div");
+    line.classList.add('line');
+    timelineWrapper.appendChild(line);
 
-// UI
+    let nodeWrapper = document.createElement("div");
+    nodeWrapper.classList.add('node-wrapper');
+    timeline.appendChild(nodeWrapper);
 
-const DATA = [
-  {
-    year: '2004',
-    title: 'This is a test title',
-    image: 'https://picsum.photos/600/400'
-  },
-  {
-    year: '2005',
-    title: 'This is a test title 2',
-    image: 'https://picsum.photos/600/400'
-  },
-  {
-    year: '1990',
-    title: 'This is a test title 3',
-    image: 'https://picsum.photos/600/400'
-  },
-  {
-    year: '2018',
-    title: 'This is a test title 4',
-    image: 'https://picsum.photos/600/400'
-  },
-  {
-    year: '2005',
-    title: 'This is a test title 2',
-    image: 'https://picsum.photos/600/400'
-  },
-  {
-    year: '1990',
-    title: 'This is a test title 3',
-    image: 'https://picsum.photos/600/400'
-  },
-  {
-    year: '2018',
-    title: 'This is a test title 4',
-    image: 'https://picsum.photos/600/400'
-  },
-]
+    for(let i = 0; i < this.data.length; i++) {
+      let tlNode = document.createElement("div");
+      tlNode.classList.add('tl-node');
+      nodeWrapper.appendChild(tlNode);
 
-if(document.getElementById('timeline')) {
-  let timeline = new Timeline('timeline', DATA);
-  timeline.init();
+      let year = document.createElement("p");
+      year.classList.add('above-year');
+      let yearText = document.createTextNode(this.data[i].year)
+      year.appendChild(yearText);
+      tlNode.appendChild(year);
+
+      let dot = document.createElement("div");
+      dot.classList.add('dot');
+      tlNode.appendChild(dot);
+
+      let data = document.createElement("div");
+      data.classList.add('data');
+      data.classList.add('left-triangle');
+      tlNode.appendChild(data);
+
+      let upper = document.createElement("div");
+      upper.classList.add('upper');
+      data.appendChild(upper);
+
+      let dataYear = document.createElement("h5");
+      let dataYearText = document.createTextNode(this.data[i].year)
+      dataYear.appendChild(dataYearText)
+      upper.appendChild(dataYear);
+
+      let title = document.createElement("h3");
+      let titleText = document.createTextNode(this.data[i].title)
+      title.appendChild(titleText)
+      upper.appendChild(title);
+
+      let image = document.createElement("img");
+      image.src = this.data[i].image;
+      data.appendChild(image);
+    }
+
+  }
 }

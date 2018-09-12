@@ -35,6 +35,7 @@ var Timeline = function () {
           var rangeX = this.slidesWidth - this.docWidth;
 
           this.wrapper.addEventListener("mousemove", this.mouseListen.bind(this)); //hover within wrapper (horizontal scrolling)
+          window.addEventListener("resize", this.windowSizeChange.bind(this)); //hover within wrapper (horizontal scrolling)
           this.initNodeListen(); //hover individual node
         }
       }
@@ -53,63 +54,6 @@ var Timeline = function () {
       };
     }
   }, {
-    key: "injectHTML",
-    value: function injectHTML() {
-      var timelineWrapper = document.createElement("section");
-      timelineWrapper.classList.add('timeline-wrapper');
-      this.wrapper.appendChild(timelineWrapper);
-
-      var timeline = document.createElement("div");
-      timeline.classList.add('timeline');
-      timelineWrapper.appendChild(timeline);
-
-      var line = document.createElement("div");
-      line.classList.add('line');
-      timeline.appendChild(line);
-
-      var nodeWrapper = document.createElement("div");
-      nodeWrapper.classList.add('node-wrapper');
-      timeline.appendChild(nodeWrapper);
-
-      for (var i = 0; i < this.data.length; i++) {
-        var tlNode = document.createElement("div");
-        tlNode.classList.add('tl-node');
-        nodeWrapper.appendChild(tlNode);
-
-        var year = document.createElement("p");
-        var yearText = document.createTextNode(this.data[i].year);
-        year.appendChild(yearText);
-        tlNode.appendChild(year);
-
-        var dot = document.createElement("div");
-        dot.classList.add('dot');
-        tlNode.appendChild(dot);
-
-        var data = document.createElement("div");
-        data.classList.add('data');
-        data.classList.add('left-triangle');
-        tlNode.appendChild(data);
-
-        var upper = document.createElement("div");
-        data.classList.add('upper');
-        data.appendChild(upper);
-
-        var dataYear = document.createElement("h5");
-        var dataYearText = document.createTextNode(this.data[i].year);
-        dataYear.appendChild(dataYearText);
-        upper.appendChild(dataYear);
-
-        var title = document.createElement("h3");
-        var titleText = document.createTextNode(this.data[i].title);
-        title.appendChild(titleText);
-        upper.appendChild(title);
-
-        var image = document.createElement("img");
-        image.src = this.data[i].image;
-        upper.appendChild(image);
-      }
-    }
-  }, {
     key: "initNodeListen",
     value: function initNodeListen() {
       for (var i = 0; i < this.nodes.length; i++) {
@@ -119,11 +63,13 @@ var Timeline = function () {
   }, {
     key: "mouseListen",
     value: function mouseListen(e) {
-      var mouseX = e.pageX,
-          percentMouse = mouseX * 100 / this.docWidth,
-          offset = percentMouse / 100 * this.slidesWidth - percentMouse / 200 * this.docWidth;
+      if (this.checkScreenSize()) {
+        var mouseX = e.pageX,
+            percentMouse = mouseX * 100 / this.docWidth,
+            offset = percentMouse / 100 * this.slidesWidth - percentMouse / 200 * this.docWidth;
 
-      this.timelineInner.style.transform = 'translate3d(' + -offset + 'px,0,0)';
+        this.timelineInner.style.transform = 'translate3d(' + -offset + 'px,0,0)';
+      }
     }
   }, {
     key: "nodeListen",
@@ -145,6 +91,13 @@ var Timeline = function () {
       }
     }
   }, {
+    key: "windowSizeChange",
+    value: function windowSizeChange() {
+      if (!this.checkScreenSize()) {
+        this.timelineInner.style.transform = 'translate3d(0,0,0)';
+      }
+    }
+  }, {
     key: "checkScreenSize",
     value: function checkScreenSize() {
       if (window.innerWidth > 800) {
@@ -153,44 +106,65 @@ var Timeline = function () {
         return false;
       }
     }
+  }, {
+    key: "injectHTML",
+    value: function injectHTML() {
+      var timelineWrapper = document.createElement("section");
+      timelineWrapper.classList.add('timeline-wrapper');
+      this.wrapper.appendChild(timelineWrapper);
+
+      var timeline = document.createElement("div");
+      timeline.classList.add('timeline');
+      timelineWrapper.appendChild(timeline);
+
+      var line = document.createElement("div");
+      line.classList.add('line');
+      timelineWrapper.appendChild(line);
+
+      var nodeWrapper = document.createElement("div");
+      nodeWrapper.classList.add('node-wrapper');
+      timeline.appendChild(nodeWrapper);
+
+      for (var i = 0; i < this.data.length; i++) {
+        var tlNode = document.createElement("div");
+        tlNode.classList.add('tl-node');
+        nodeWrapper.appendChild(tlNode);
+
+        var year = document.createElement("p");
+        year.classList.add('above-year');
+        var yearText = document.createTextNode(this.data[i].year);
+        year.appendChild(yearText);
+        tlNode.appendChild(year);
+
+        var dot = document.createElement("div");
+        dot.classList.add('dot');
+        tlNode.appendChild(dot);
+
+        var data = document.createElement("div");
+        data.classList.add('data');
+        data.classList.add('left-triangle');
+        tlNode.appendChild(data);
+
+        var upper = document.createElement("div");
+        upper.classList.add('upper');
+        data.appendChild(upper);
+
+        var dataYear = document.createElement("h5");
+        var dataYearText = document.createTextNode(this.data[i].year);
+        dataYear.appendChild(dataYearText);
+        upper.appendChild(dataYear);
+
+        var title = document.createElement("h3");
+        var titleText = document.createTextNode(this.data[i].title);
+        title.appendChild(titleText);
+        upper.appendChild(title);
+
+        var image = document.createElement("img");
+        image.src = this.data[i].image;
+        data.appendChild(image);
+      }
+    }
   }]);
 
   return Timeline;
 }();
-
-// UI
-
-var DATA = [{
-  year: '2004',
-  title: 'This is a test title',
-  image: 'https://picsum.photos/600/400'
-}, {
-  year: '2005',
-  title: 'This is a test title 2',
-  image: 'https://picsum.photos/600/400'
-}, {
-  year: '1990',
-  title: 'This is a test title 3',
-  image: 'https://picsum.photos/600/400'
-}, {
-  year: '2018',
-  title: 'This is a test title 4',
-  image: 'https://picsum.photos/600/400'
-}, {
-  year: '2005',
-  title: 'This is a test title 2',
-  image: 'https://picsum.photos/600/400'
-}, {
-  year: '1990',
-  title: 'This is a test title 3',
-  image: 'https://picsum.photos/600/400'
-}, {
-  year: '2018',
-  title: 'This is a test title 4',
-  image: 'https://picsum.photos/600/400'
-}];
-
-if (document.getElementById('timeline')) {
-  var timeline = new Timeline('timeline', DATA);
-  timeline.init();
-}

@@ -1,9 +1,13 @@
 html {
   overflow-x: hidden; }
 
+* {
+  box-sizing: border-box; }
+
 .timeline-wrapper {
   padding-top: 100px;
-  padding-bottom: 100px; }
+  padding-bottom: 100px;
+  position: relative; }
   .timeline-wrapper .btn-wrapper {
     width: 100%;
     text-align: center;
@@ -13,6 +17,22 @@ html {
         text-align: left;
         margin-left: 120px;
         margin-top: -60px; } }
+  .timeline-wrapper .line {
+    height: 1px;
+    width: 1200%;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    margin: auto;
+    position: absolute;
+    border-top: 2px solid grey; }
+    @media (max-width: 800px) {
+      .timeline-wrapper .line {
+        width: 100%;
+        height: 100%;
+        border: 0;
+        border-left: 2px solid grey;
+        left: 20px; } }
 
 .timeline {
   position: relative;
@@ -22,24 +42,7 @@ html {
   @media (max-width: 800px) {
     .timeline {
       width: auto;
-      margin: 30px; } }
-  .timeline .line {
-    height: 1px;
-    width: 1200%;
-    top: 0;
-    left: 0;
-    bottom: 0;
-    margin: auto;
-    position: absolute;
-    border-top: 2px solid grey;
-    z-index: -1; }
-    @media (max-width: 800px) {
-      .timeline .line {
-        width: 100%;
-        height: 100%;
-        border: 0;
-        border-left: 2px solid grey;
-        left: 15px; } }
+      margin: 7px; } }
   .timeline .node-wrapper {
     padding-right: 100px;
     padding-left: 100px;
@@ -56,20 +59,27 @@ html {
   @media (max-width: 800px) {
     .tl-node {
       margin: auto;
-      display: none;
-      margin-bottom: 50px; }
-      .tl-node:nth-child(-n+3) {
-        display: flex; } }
+      margin-bottom: 50px;
+      display: flex; } }
   .tl-node p {
     margin: 0;
     font-size: .6rem;
     text-align: center;
     position: absolute;
     top: -30px;
-    width: 100%; }
+    width: 100%;
+    font-family: 'helvetica';
+    letter-spacing: .8px; }
     @media (max-width: 800px) {
       .tl-node p {
         display: none; } }
+  .tl-node h3, .tl-node h5 {
+    font-family: 'helvetica';
+    margin: 0; }
+  .tl-node h5 {
+    margin-bottom: 5px;
+    font-weight: 100;
+    letter-spacing: .8px; }
   .tl-node .data {
     opacity: 0;
     transition: all 400ms;
@@ -94,7 +104,7 @@ html {
         left: auto;
         visibility: visible;
         opacity: 1;
-        margin-left: 30px;
+        margin-left: 35px;
         width: 80%; } }
   .tl-node .dot {
     width: 30px;
