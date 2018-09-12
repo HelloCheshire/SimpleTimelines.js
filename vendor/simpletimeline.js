@@ -77,13 +77,13 @@ var Timeline = function () {
       var offset = this.getBoundingClientRect().left,
           content = this.children[2];
       if (offset > window.innerWidth / 2) {
-        // lock pop up to the right
+        // lock modal to the right
         content.style.left = 'auto';
         content.style.right = '-20px';
         content.classList.remove('left-triangle');
         content.classList.add('right-triangle');
       } else {
-        // lock pop up to the left
+        // lock modal to the left
         content.style.left = '-20px';
         content.style.right = 'auto';
         content.classList.add('left-triangle');

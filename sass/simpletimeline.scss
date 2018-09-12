@@ -27,14 +27,14 @@ html {
     bottom: 0;
     margin: auto;
     position: absolute;
-    border-top: 2px solid grey;
+    border-top: 2px solid #808080;
     // z-index: -1;
     @media(max-width: 800px) {
       // display: none;
       width: 100%;
       height: 100%;
       border: 0;
-      border-left: 2px solid grey;
+      border-left: 2px solid #808080;
       left: 20px;
     }
   }
@@ -100,7 +100,7 @@ html {
     position: absolute;
     width: 500px;
     z-index: 1;
-    background-color: white;
+    background-color: #fff;
     visibility: hidden;
     top: 60px;
     left: -20px;
@@ -128,20 +128,20 @@ html {
     width: 30px;
     height: 30px;
     border-radius: 50%;
-    background-color: grey;
+    background-color: #808080;
     transition: all 200ms;
     position: relative;
-    // border: 4px solid grey;
+    // border: 4px solid #808080;
     @media(max-width: 800px) {
-      background-color: black;
-      border: 4px solid white;
+      background-color: #000;
+      border: 4px solid #fff;
 
     }
   }
   &:hover {
     .dot {
-      background-color: black;
-      border-color: white;
+      background-color: #000;
+      border-color: #fff;
     }
     .data {
       visibility: visible;
@@ -157,7 +157,7 @@ html {
     height: 0;
     border-left: 20px solid transparent;
     border-right: 20px solid transparent;
-    border-bottom: 20px solid white;
+    border-bottom: 20px solid #fff;
     position: absolute;
     top: -20px;
     left: 15px;
@@ -166,7 +166,7 @@ html {
       left: -40px !important;
       border-top: 20px solid transparent;
       border-bottom: 20px solid transparent;
-      border-right:20px solid white;
+      border-right:20px solid #fff;
     }
   }
 }
@@ -177,7 +177,7 @@ html {
     height: 0;
     border-left: 20px solid transparent;
     border-right: 20px solid transparent;
-    border-bottom: 20px solid white;
+    border-bottom: 20px solid #fff;
     position: absolute;
     top: -20px;
     right: 15px;
@@ -186,7 +186,7 @@ html {
       left: -40px !important;
       border-top: 20px solid transparent;
       border-bottom: 20px solid transparent;
-      border-right:20px solid white;
+      border-right:20px solid #fff;
     }
   }
 }
@@ -201,7 +201,7 @@ html {
     width: 100%;
     height: 100%;
     border: 0;
-    border-left: 2px solid grey;
+    border-left: 2px solid #808080;
     left: 15px;
   }
   .node-wrapper {
@@ -233,8 +233,8 @@ html {
     }
   }
   .dot {
-    background-color: black;
-    border: 4px solid white;
+    background-color: #000;
+    border: 4px solid #fff;
   }
 
   .left-triangle:before, .right-triangle:before {
@@ -242,6 +242,6 @@ html {
     left: -40px !important;
     border-top: 20px solid transparent;
     border-bottom: 20px solid transparent;
-    border-right:20px solid white;
+    border-right:20px solid #fff;
   }
 }
