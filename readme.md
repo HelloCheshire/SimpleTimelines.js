@@ -80,6 +80,32 @@ Simple timeline is barebones. It's left lightweight to allow easier customizatio
 
 Edit `simpletimeline.css` and `simpletimeline.js` to your hearts content!
 
+
+## Issues
+
+Feel free to submit issues and enhancement requests.
+
+## Contributing
+
+CheshireBeane welcomes contributions to our [open source projects on Github](https://github.com/CheshireBeane).
+
+Please follow the following steps if you wish to contribute to this open source project!
+
+ 1. **Fork** the repo on GitHub
+ 2. **Clone** the project to your own machine
+ 3. **Commit** changes to your own branch
+ 4. **Push** your work back up to your fork
+ 5. Submit a **Pull request** so that we can review your changes
+
+## Development
+
+To setup this project for development:
+
+* Clone or download the repository
+* Run `npm install` inside the root of the project
+* In gulpfile.js change the location you are proxying: `proxy: 'localhost:8888/timeline'`
+* Run `gulp` to start dev environment (including scss, babel, and browserSync)
+
 ## Authors
 
 **Tanner Eustice** - *Initial work* - [teustice](https://github.com/teustice)
