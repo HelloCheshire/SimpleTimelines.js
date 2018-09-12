@@ -2,15 +2,15 @@
 
 A vanilla JavaScript library for creating simple responsive timelines.
 
-View the [demo](https://teustice.github.io/SimpleTimelines.js/)!
+View the [demo](https://cheshirebeane.github.io/SimpleTimelines.js/)!
 
 Infinite Length            |  Responsive
 :-------------------------:|:-------------------------:
-![](https://github.com/teustice/SimpleTimelines.js/blob/master/images/gif1.gif)  |  ![](https://github.com/teustice/SimpleTimelines.js/blob/master/images/gif2.gif)
+![](https://github.com/CheshireBeane/SimpleTimelines.js/blob/master/images/gif1.gif)  |  ![](https://github.com/CheshireBeane/SimpleTimelines.js/blob/master/images/gif2.gif)
 
 ## Installing
 
-Copy the following [files](https://github.com/teustice/SimpleTimelines.js/tree/master/vendor) into the `HEAD` of your website (be sure to set the appropriate paths):
+Copy the following [files](https://github.com/CheshireBeane/SimpleTimelines.js/tree/master/vendor) into the `HEAD` of your website (be sure to set the appropriate paths):
 
 ```
 <link rel="stylesheet" href="PATH_TO/simpletimeline.css">
