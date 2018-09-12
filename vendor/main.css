@@ -1,0 +1,201 @@
+html {
+  overflow-x: hidden; }
+
+.timeline-wrapper {
+  padding-top: 100px;
+  padding-bottom: 100px; }
+  .timeline-wrapper .btn-wrapper {
+    width: 100%;
+    text-align: center;
+    margin-top: 50px; }
+    @media (max-width: 800px) {
+      .timeline-wrapper .btn-wrapper {
+        text-align: left;
+        margin-left: 120px;
+        margin-top: -60px; } }
+
+.timeline {
+  position: relative;
+  width: 100vw;
+  padding: 20px 0;
+  z-index: 5; }
+  @media (max-width: 800px) {
+    .timeline {
+      width: auto;
+      margin: 30px; } }
+  .timeline .line {
+    height: 1px;
+    width: 1200%;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    margin: auto;
+    position: absolute;
+    border-top: 2px solid grey;
+    z-index: -1; }
+    @media (max-width: 800px) {
+      .timeline .line {
+        width: 100%;
+        height: 100%;
+        border: 0;
+        border-left: 2px solid grey;
+        left: 15px; } }
+  .timeline .node-wrapper {
+    padding-right: 100px;
+    padding-left: 100px;
+    display: flex; }
+    @media (max-width: 800px) {
+      .timeline .node-wrapper {
+        display: block;
+        padding: 0; } }
+
+.tl-node {
+  position: relative;
+  margin-right: 100px;
+  margin-left: 100px; }
+  @media (max-width: 800px) {
+    .tl-node {
+      margin: auto;
+      display: none;
+      margin-bottom: 50px; }
+      .tl-node:nth-child(-n+3) {
+        display: flex; } }
+  .tl-node p {
+    margin: 0;
+    font-size: .6rem;
+    text-align: center;
+    position: absolute;
+    top: -30px;
+    width: 100%; }
+    @media (max-width: 800px) {
+      .tl-node p {
+        display: none; } }
+  .tl-node .data {
+    opacity: 0;
+    transition: all 400ms;
+    position: absolute;
+    width: 500px;
+    z-index: 1;
+    background-color: white;
+    visibility: hidden;
+    top: 60px;
+    left: -20px;
+    box-shadow: 0 5px 9px -5px rgba(67, 67, 67, 0.5); }
+    .tl-node .data img {
+      width: 100%;
+      height: auto;
+      display: block; }
+    .tl-node .data .upper {
+      padding: 20px; }
+    @media (max-width: 800px) {
+      .tl-node .data {
+        position: relative;
+        top: -20px;
+        left: auto;
+        visibility: visible;
+        opacity: 1;
+        margin-left: 30px;
+        width: 80%; } }
+  .tl-node .dot {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background-color: grey;
+    transition: all 200ms;
+    position: relative; }
+    @media (max-width: 800px) {
+      .tl-node .dot {
+        background-color: black;
+        border: 4px solid white; } }
+  .tl-node:hover .dot {
+    background-color: black;
+    border-color: white; }
+  .tl-node:hover .data {
+    visibility: visible;
+    opacity: 1; }
+
+.left-triangle:before {
+  content: '';
+  width: 0;
+  height: 0;
+  border-left: 20px solid transparent;
+  border-right: 20px solid transparent;
+  border-bottom: 20px solid white;
+  position: absolute;
+  top: -20px;
+  left: 15px; }
+  @media (max-width: 800px) {
+    .left-triangle:before {
+      top: 15px;
+      left: -40px !important;
+      border-top: 20px solid transparent;
+      border-bottom: 20px solid transparent;
+      border-right: 20px solid white; } }
+
+.right-triangle:before {
+  content: '';
+  width: 0;
+  height: 0;
+  border-left: 20px solid transparent;
+  border-right: 20px solid transparent;
+  border-bottom: 20px solid white;
+  position: absolute;
+  top: -20px;
+  right: 15px; }
+  @media (max-width: 800px) {
+    .right-triangle:before {
+      top: 15px;
+      left: -40px !important;
+      border-top: 20px solid transparent;
+      border-bottom: 20px solid transparent;
+      border-right: 20px solid white; } }
+
+@media (max-width: 800px) {
+  .timeline-full {
+    width: auto;
+    margin: 0; } }
+
+.timeline-full .line {
+  width: 100%;
+  height: 100%;
+  border: 0;
+  border-left: 2px solid grey;
+  left: 15px; }
+
+.timeline-full .node-wrapper {
+  display: block;
+  position: relative;
+  max-width: 900px;
+  margin: auto;
+  padding: 0; }
+
+.timeline-full .tl-node {
+  display: flex;
+  margin: auto;
+  margin-bottom: 50px; }
+
+.timeline-full p {
+  display: none; }
+
+.timeline-full .data {
+  position: relative;
+  top: -20px;
+  left: auto;
+  visibility: visible;
+  opacity: 1;
+  margin-left: 50px;
+  width: 80%; }
+  .timeline-full .data img {
+    width: 100%;
+    height: auto; }
+
+.timeline-full .dot {
+  background-color: black;
+  border: 4px solid white; }
+
+.timeline-full .left-triangle:before, .timeline-full .right-triangle:before {
+  top: 15px;
+  left: -40px !important;
+  border-top: 20px solid transparent;
+  border-bottom: 20px solid transparent;
+  border-right: 20px solid white; }
