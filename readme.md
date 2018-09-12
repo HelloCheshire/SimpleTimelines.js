@@ -74,7 +74,7 @@ Calling `timeline.init()` will then parse your data, and initialize a new timeli
 
 ## Customization
 
-Simple timeline is barebones. It's left lightweight to allow easier customization of css and data.
+Simple timeline is barebones. It's left lightweight to allow easier customization of css and js.
 
 Edit `simpletimeline.css` and `simpletimeline.js` to your hearts content!
 
