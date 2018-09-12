@@ -10,7 +10,7 @@ Infinite Length            |  Responsive
 
 ## Installing
 
-Copy the following into the `HEAD` of your website (be sure to set the appropriate paths):
+Copy the following [files](https://github.com/teustice/SimpleTimelines.js/tree/master/vendor) into the `HEAD` of your website (be sure to set the appropriate paths):
 
 ```
 <link rel="stylesheet" href="PATH_TO/simpletimeline.css">
