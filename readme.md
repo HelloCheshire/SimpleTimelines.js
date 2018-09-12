@@ -2,6 +2,8 @@
 
 A vanilla JavaScript library for creating simple responsive timelines.
 
+View the [demo](https://teustice.github.io/SimpleTimelines.js/)!
+
 Infinite Length            |  Responsive
 :-------------------------:|:-------------------------:
 ![](https://github.com/teustice/SimpleTimelines.js/blob/master/images/gif1.gif)  |  ![](https://github.com/teustice/SimpleTimelines.js/blob/master/images/gif2.gif)
