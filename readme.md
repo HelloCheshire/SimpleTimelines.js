@@ -109,6 +109,7 @@ To setup this project for development:
 ## Authors
 
 **Tanner Eustice** - *Initial work* - [teustice](https://github.com/teustice)
+**Cheshirebeane Teame** - *Initial work* - [CheshireBeane](https://github.com/Cheshirebeane)
 
 
 ## License
