@@ -36,7 +36,7 @@ gulp.task('js', function() {
 gulp.task('default', ['js', 'sass'], function() {
 
       browserSync.init({
-      proxy: 'localhost:8888/timeline',
+      proxy: 'localhost:8888/SimpleTimelines.js',
     });
 
     gulp.watch("sass/**/*.scss", ['sass']).on('change', browserSync.reload);

@@ -13,7 +13,7 @@ class Timeline {
   }
 
   init() {
-    if(this.data) {
+    if (this.data) {
       this.data = this.data.sort(this.sortNodesByDate('year')); //sort nodes by year
 
       this.injectHTML();
@@ -21,7 +21,7 @@ class Timeline {
       this.timelineInner = document.querySelector(`#${this.wrapperId} .timeline`);
       this.nodes = document.querySelectorAll(`#${this.wrapperId} .tl-node`)
 
-      if(this.checkScreenSize()) {
+      if (this.checkScreenSize()) {
         this.slidesWidth = 200 * this.nodes.length;
         let rangeX = this.slidesWidth - this.docWidth;
 
@@ -34,27 +34,27 @@ class Timeline {
 
   sortNodesByDate(property) {
     var sortOrder = 1;
-    if(property[0] === "-") {
-        sortOrder = -1;
-        property = property.substr(1);
+    if (property[0] === "-") {
+      sortOrder = -1;
+      property = property.substr(1);
     }
-    return function (a,b) {
-        var result = (a[property] < b[property]) ? -1 : (a[property] > b[property]) ? 1 : 0;
-        return result * sortOrder;
+    return function(a, b) {
+      var result = (a[property] < b[property]) ? -1 : (a[property] > b[property]) ? 1 : 0;
+      return result * sortOrder;
     }
   }
 
   initNodeListen() {
-    for(let i = 0; i < this.nodes.length; i++) {
+    for (let i = 0; i < this.nodes.length; i++) {
       this.nodes[i].addEventListener("mouseenter", this.nodeListen);
     }
   }
 
   mouseListen(e) {
-    if(this.checkScreenSize()) {
+    if (this.checkScreenSize()) {
       var mouseX = e.pageX,
-      percentMouse = mouseX * 100 / this.docWidth,
-      offset = percentMouse / 100 * this.slidesWidth - percentMouse / 200 * this.docWidth;
+        percentMouse = mouseX * 100 / this.docWidth,
+        offset = percentMouse / 100 * this.slidesWidth - percentMouse / 200 * this.docWidth;
 
       this.timelineInner.style.transform = 'translate3d(' + -offset + 'px,0,0)'
     }
@@ -62,8 +62,8 @@ class Timeline {
 
   nodeListen() {
     let offset = this.getBoundingClientRect().left,
-    content = this.children[2];
-    if(offset > (window.innerWidth / 2)) {
+      content = this.children[2];
+    if (offset > (window.innerWidth / 2)) {
       // lock modal to the right
       content.style.left = 'auto';
       content.style.right = '-20px';
@@ -79,13 +79,13 @@ class Timeline {
   }
 
   windowSizeChange() {
-    if(!this.checkScreenSize()) {
+    if (!this.checkScreenSize()) {
       this.timelineInner.style.transform = 'translate3d(0,0,0)';
     }
   }
 
   checkScreenSize() {
-    if(window.innerWidth > 800) {
+    if (window.innerWidth > 800) {
       return true;
     } else {
       return false;
@@ -109,43 +109,24 @@ class Timeline {
     nodeWrapper.classList.add('node-wrapper');
     timeline.appendChild(nodeWrapper);
 
-    for(let i = 0; i < this.data.length; i++) {
+    for (let i = 0; i < this.data.length; i++) {
       let tlNode = document.createElement("div");
       tlNode.classList.add('tl-node');
+
+      tlNode.innerHTML = `
+      <div class="tl-node">
+        <p class="above-year">${this.data[i].year}</p>
+        <div class="dot"></div>
+        <div class="data left-triangle" style="left: -20px; right: auto;">
+          <div class="upper">
+            <h5>${this.data[i].year}</h5>
+            <h3>${this.data[i].title}</h3>
+          </div>
+          <img src="${this.data[i].image}" alt="" />
+        </div>
+      </div>`
+
       nodeWrapper.appendChild(tlNode);
-
-      let year = document.createElement("p");
-      year.classList.add('above-year');
-      let yearText = document.createTextNode(this.data[i].year)
-      year.appendChild(yearText);
-      tlNode.appendChild(year);
-
-      let dot = document.createElement("div");
-      dot.classList.add('dot');
-      tlNode.appendChild(dot);
-
-      let data = document.createElement("div");
-      data.classList.add('data');
-      data.classList.add('left-triangle');
-      tlNode.appendChild(data);
-
-      let upper = document.createElement("div");
-      upper.classList.add('upper');
-      data.appendChild(upper);
-
-      let dataYear = document.createElement("h5");
-      let dataYearText = document.createTextNode(this.data[i].year)
-      dataYear.appendChild(dataYearText)
-      upper.appendChild(dataYear);
-
-      let title = document.createElement("h3");
-      let titleText = document.createTextNode(this.data[i].title)
-      title.appendChild(titleText)
-      upper.appendChild(title);
-
-      let image = document.createElement("img");
-      image.src = this.data[i].image;
-      data.appendChild(image);
     }
   }
 }

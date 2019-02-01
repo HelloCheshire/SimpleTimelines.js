@@ -128,40 +128,10 @@ var Timeline = function () {
       for (var i = 0; i < this.data.length; i++) {
         var tlNode = document.createElement("div");
         tlNode.classList.add('tl-node');
+
+        tlNode.innerHTML = "\n      <div class=\"tl-node\">\n        <p class=\"above-year\">" + this.data[i].year + "</p>\n        <div class=\"dot\"></div>\n        <div class=\"data left-triangle\" style=\"left: -20px; right: auto;\">\n          <div class=\"upper\">\n            <h5>" + this.data[i].year + "</h5>\n            <h3>" + this.data[i].title + "</h3>\n          </div>\n          <img src=\"" + this.data[i].image + "\" alt=\"\" />\n        </div>\n      </div>";
+
         nodeWrapper.appendChild(tlNode);
-
-        var year = document.createElement("p");
-        year.classList.add('above-year');
-        var yearText = document.createTextNode(this.data[i].year);
-        year.appendChild(yearText);
-        tlNode.appendChild(year);
-
-        var dot = document.createElement("div");
-        dot.classList.add('dot');
-        tlNode.appendChild(dot);
-
-        var data = document.createElement("div");
-        data.classList.add('data');
-        data.classList.add('left-triangle');
-        tlNode.appendChild(data);
-
-        var upper = document.createElement("div");
-        upper.classList.add('upper');
-        data.appendChild(upper);
-
-        var dataYear = document.createElement("h5");
-        var dataYearText = document.createTextNode(this.data[i].year);
-        dataYear.appendChild(dataYearText);
-        upper.appendChild(dataYear);
-
-        var title = document.createElement("h3");
-        var titleText = document.createTextNode(this.data[i].title);
-        title.appendChild(titleText);
-        upper.appendChild(title);
-
-        var image = document.createElement("img");
-        image.src = this.data[i].image;
-        data.appendChild(image);
       }
     }
   }]);
