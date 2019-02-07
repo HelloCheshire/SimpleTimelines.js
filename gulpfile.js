@@ -12,15 +12,16 @@ var rename       = require('gulp-rename');
 var source     = './';
 
 gulp.task('sass', function() {
-    gulp.src('sass/simpletimeline.scss')
+    return gulp.src('sass/simpletimeline.scss')
         .pipe(sass().on('error', sass.logError))
-        .pipe(gulp.dest('./vendor'));
+        .pipe(gulp.dest('./vendor'))
+        .pipe(browserSync.stream());
 });
 
 gulp.task('js', function() {
   return gulp.src([source + 'scripts/*.js'])
     .pipe(babel({
-      presets: ['es2015']
+      presets: ['@babel/env']
     }))
     .pipe(concat('simpletimeline.js'))
     .pipe(gulp.dest(source + '/vendor'))
@@ -33,13 +34,13 @@ gulp.task('js', function() {
     .pipe(notify({ message: 'Scripts task complete', onLast: true }));
 });
 
-gulp.task('default', ['js', 'sass'], function() {
+gulp.task('default', gulp.series(gulp.parallel('js', 'sass'), function() {
 
       browserSync.init({
       proxy: 'localhost:8888/SimpleTimelines.js',
     });
 
-    gulp.watch("sass/**/*.scss", ['sass']).on('change', browserSync.reload);
+    gulp.watch("sass/**/*.scss", gulp.parallel('sass')).on('change', browserSync.reload);
     gulp.watch("./*.html").on('change', browserSync.reload);
-    gulp.watch("scripts/**/*.js", ['js']).on('change', browserSync.reload);
-});
+    gulp.watch("scripts/**/*.js", gulp.parallel('js')).on('change', browserSync.reload);
+}));
