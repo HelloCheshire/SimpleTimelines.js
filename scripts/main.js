@@ -114,7 +114,6 @@ class Timeline {
       tlNode.classList.add('tl-node');
 
       tlNode.innerHTML = `
-      <div class="tl-node">
         <p class="above-year">${this.data[i].year}</p>
         <div class="dot"></div>
         <div class="data left-triangle" style="left: -20px; right: auto;">
@@ -123,8 +122,7 @@ class Timeline {
             <h3>${this.data[i].title}</h3>
           </div>
           <img src="${this.data[i].image}" alt="" />
-        </div>
-      </div>`
+        </div>`
 
       nodeWrapper.appendChild(tlNode);
     }

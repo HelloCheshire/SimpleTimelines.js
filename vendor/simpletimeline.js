@@ -129,7 +129,7 @@ function () {
       for (var i = 0; i < this.data.length; i++) {
         var tlNode = document.createElement("div");
         tlNode.classList.add('tl-node');
-        tlNode.innerHTML = "\n      <div class=\"tl-node\">\n        <p class=\"above-year\">".concat(this.data[i].year, "</p>\n        <div class=\"dot\"></div>\n        <div class=\"data left-triangle\" style=\"left: -20px; right: auto;\">\n          <div class=\"upper\">\n            <h5>").concat(this.data[i].year, "</h5>\n            <h3>").concat(this.data[i].title, "</h3>\n          </div>\n          <img src=\"").concat(this.data[i].image, "\" alt=\"\" />\n        </div>\n      </div>");
+        tlNode.innerHTML = "\n        <p class=\"above-year\">".concat(this.data[i].year, "</p>\n        <div class=\"dot\"></div>\n        <div class=\"data left-triangle\" style=\"left: -20px; right: auto;\">\n          <div class=\"upper\">\n            <h5>").concat(this.data[i].year, "</h5>\n            <h3>").concat(this.data[i].title, "</h3>\n          </div>\n          <img src=\"").concat(this.data[i].image, "\" alt=\"\" />\n        </div>");
         nodeWrapper.appendChild(tlNode);
       }
     }
