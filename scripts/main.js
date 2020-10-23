@@ -1,13 +1,12 @@
 class Timeline {
 
-  constructor(wrapper, data) {
+  constructor(wrapper, data, options) {
     this.data = data;
     this.wrapperId = wrapper;
     this.wrapper = document.getElementById(wrapper);
-
+    this.options = options;
     this.slidesWidth = 0;
     this.docWidth = window.innerWidth;
-
     this.timelineInner = null;
     this.nodes = null;
   }
@@ -85,7 +84,9 @@ class Timeline {
   }
 
   checkScreenSize() {
-    if (window.innerWidth > 800) {
+    const breakpoint = this.options.mobileBreakpoint ? this.options.mobileBreakpoint : 800;
+
+    if (window.innerWidth > breakpoint) {
       return true;
     } else {
       return false;

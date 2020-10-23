@@ -57,6 +57,8 @@ const DATA = [
 ];
 
 if(document.getElementById('timeline')) {
-  let timeline = new Timeline('timeline', DATA);
+  let timeline = new Timeline('timeline', DATA, {
+    mobileBreakpoint: 500
+  });
   timeline.init();
 }
