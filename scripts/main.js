@@ -1,4 +1,4 @@
-class Timeline {
+export default class Timeline {
 
   constructor(wrapper, data, options) {
     this.data = data;
